@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Ultimate Election 2026 - Winner Takes All 🔥</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Tajawal', 'Poppins', sans-serif;
+            background-color: #1a1b1e;
+            color: #dbdee1;
+            overflow-x: hidden;
+            cursor: default;
+        }
+        #cursorGlow {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, rgba(88, 101, 242, 0.06) 40%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+            z-index: 9999;
+            mix-blend-mode: screen;
+        }
+        .enchanted-apple {
+            position: fixed;
+            width: 32px;
+            height: 32px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%23ffd700"/><path d="M16 4v4M12 2l4 4 4-4" stroke="%238b4513" stroke-width="2" fill="none"/><path d="M10 12c-3 0-5 3-5 6s2 6 5 6c2 0 4-2 6-4 2 2 4 4 6 4 3 0 5-3 5-6s-2-6-5-6c-2 0-3.5 1.5-6 3-2.5-1.5-4-3-6-3z" fill="%23ffc107"/><path d="M12 14c-1.5 0-2.5 1-2.5 2.5s1 2.5 2.5 2.5" stroke="%23fff" stroke-width="1.5" fill="none" opacity="0.8"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            z-index: 10000;
+            animation: appleFly 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            filter: drop-shadow(0 0 10px #ffdf00);
+        }
+        @keyframes appleFly {
+            0% { transform: translate(0, 0) scale(0.6) rotate(0deg); opacity: 1; }
+            100% { transform: translate(var(--dx), var(--dy)) scale(1.4) rotate(360deg); opacity: 0; }
+        }
+        .discord-glass {
+            background: rgba(30, 31, 34, 0.85);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .discord-card {
+            background-color: #2b2d31;
+            border: 1px solid #3f4147;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .discord-card:hover {
+            transform: translateY(-6px);
+            border-color: #5865F2;
+            box-shadow: 0 16px 35px -10px rgba(88, 101, 242, 0.35);
+        }
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1.5deg); }
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animated-gradient {
+            background: linear-gradient(-45deg, #5865F2, #eb459e, #ff73fa, #3ba55d);
+            background-size: 300% 300%;
+            animation: gradientShift 8s ease infinite;
+        }
+        .float-anim { animation: floatSlow 5s ease-in-out infinite; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #2b2d31; }
+        ::-webkit-scrollbar-thumb { background: #111214; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #5865F2; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-[#eb459e] selection:text-white">
+
+    <div id="cursorGlow"></div>
+
+    <!-- Header -->
+    <header class="discord-glass sticky top-0 z-50 px-6 py-3.5 border-b border-[#232428] flex flex-wrap justify-between items-center gap-4 shadow-2xl">
+        <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-2xl animated-gradient flex items-center justify-center text-white text-xl font-black shadow-lg float-anim">
+                <i class="fa-solid fa-crown text-yellow-300 drop-shadow"></i>
+            </div>
+            <div>
+                <h1 class="font-black text-base md:text-lg text-white flex items-center gap-2 font-['Poppins']">
+                    Discord Election <span class="bg-gradient-to-r from-pink-500 to-purple-600 text-[11px] px-2.5 py-0.5 rounded-full text-white font-bold tracking-wide uppercase shadow">Winner Takes All 🔥</span>
+                </h1>
+                <p class="text-xs text-zinc-400">Winner gets <span class="text-yellow-400 font-bold">Full Access</span> + Round 2 Epic Qualification!</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <div id="loggedOutSection">
+                <button onclick="openLoginModal()" class="bg-[#5865F2] hover:bg-[#4752C4] active:scale-95 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 flex items-center gap-2 shadow-lg shadow-indigo-500/20">
+                    <i class="fa-brands fa-discord text-sm"></i> تسجيل الدخول / Login 🚀
+                </button>
+            </div>
+            <div id="loggedInSection" class="hidden flex items-center gap-3 bg-[#2b2d31] px-3.5 py-1.5 rounded-xl border border-zinc-700 shadow-inner">
+                <div class="relative">
+                    <div id="userAvatarPlaceholder" class="w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-pink-500 font-bold text-white flex items-center justify-center text-xs shadow-md">Z</div>
+                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#2b2d31] rounded-full animate-ping"></span>
+                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#2b2d31] rounded-full"></span>
+                </div>
+                <div>
+                    <div class="text-[10px] text-zinc-400 uppercase tracking-wider">المستخدم المسجل:</div>
+                    <div id="currentUsernameDisplay" class="text-xs font-bold text-white">Guest</div>
+                </div>
+                <button id="adminTriggerBtn" type="button" onclick="toggleAdminPanel()" class="hidden bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-2.5 py-1 rounded-lg ml-1 font-bold transition flex items-center gap-1 shadow cursor-pointer">
+                    <i class="fa-solid fa-crown text-yellow-300"></i> لوحة التحكم
+                </button>
+                <button type="button" onclick="logoutUser()" class="text-red-400 hover:text-red-300 text-xs px-2.5 py-1 bg-red-500/10 hover:bg-red-500/20 rounded-lg ml-2 transition-all">خروج</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <div class="lg:col-span-8 space-y-6">
+            <!-- Rules Banner -->
+            <div class="discord-card p-5 rounded-2xl relative overflow-hidden border-l-4 border-l-[#eb459e] shadow-2xl">
+                <div class="absolute -right-8 -bottom-8 opacity-10 text-9xl text-[#eb459e] pointer-events-none float-anim">
+                    <i class="fa-solid fa-fire"></i>
+                </div>
+                <h2 class="text-base md:text-lg font-black text-white mb-2 flex items-center gap-2 font-['Poppins']">
+                    <i class="fa-solid fa-bullhorn text-[#eb459e] animate-bounce"></i> `@everyone @here` Server Election Rules
+                </h2>
+                <p class="text-xs md:text-sm text-zinc-300 leading-relaxed mb-3">
+                    The idea is simple: A 1v1 battle between you and your friend or rival! People vote for you, and the winner advances to Round 2. The ultimate winner gets <span class="text-yellow-400 font-bold">Full Access</span>. ⚠️ <strong class="text-pink-400">If you don't bring your friends to vote, you might lose 100%</strong> because your rival will bring theirs! This time: <span class="text-red-400 font-bold uppercase">Winner Takes All (يا غالب يا مغلوب)</span>. 🔒 <strong class="text-indigo-400">لكل شخص صوت واحد، ويمكنك إلغاء صوتك وتغييره للمنافس الآخر في أي وقت!</strong>
+                </p>
+                <div class="bg-[#1e1f22] p-3 rounded-xl border border-zinc-700/60 flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-400">
+                    <span>⚡ Status: <strong class="text-[#eb459e]" id="roundStatusBadge">الجولة الحالية نشطة 🔥</strong></span>
+                    <button onclick="copyDiscordAlert()" class="bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white px-3.5 py-2 rounded-xl font-bold transition-all duration-300 flex items-center gap-1.5 shadow-md">
+                        <i class="fa-regular fa-copy"></i> Copy Discord Mention Embed
+                    </button>
+                </div>
+            </div>
+
+            <!-- Battle Arena -->
+            <div class="discord-card p-6 md:p-8 rounded-2xl shadow-2xl relative overflow-hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-base md:text-lg font-black text-white flex items-center gap-2 font-['Poppins']">
+                        <i class="fa-solid fa-swords text-orange-500"></i> Battle Arena (1v1)
+                    </h3>
+                    <div id="roundTimerDisplay" class="bg-indigo-600/20 text-indigo-400 text-xs px-3.5 py-1.5 rounded-full font-bold border border-indigo-500/30">
+                        ⏳ انتهاء الراوند: مفتوح
+                    </div>
+                </div>
+
+                <div id="arenaContent"></div>
+
+                <!-- Cancel Vote Bar -->
+                <div id="cancelVoteBar" class="hidden mt-4 p-3 bg-[#1e1f22] rounded-xl border border-yellow-500/30 flex items-center justify-between gap-3">
+                    <div class="text-xs text-yellow-400 flex items-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span>لقد صويت في هذه الجولة. هل تريد إلغاء صوتك لتتمكن من التصويت للمنافس الآخر؟</span>
+                    </div>
+                    <button onclick="cancelMyVote()" class="bg-red-500/20 hover:bg-red-500/30 text-red-400 border border-red-500/40 text-xs font-bold px-3 py-1.5 rounded-lg transition shadow flex items-center gap-1.5 flex-shrink-0">
+                        <i class="fa-solid fa-rotate-left"></i> إلغاء وتغيير الصوت 🔄
+                    </button>
+                </div>
+
+                <div class="mt-8 pt-4 border-t border-zinc-700/70 flex flex-wrap items-center justify-between gap-4">
+                    <span class="text-xs text-zinc-400 flex items-center gap-1.5"><i class="fa-solid fa-lightbulb text-yellow-400"></i> Tip: Vote for your favorite contestant in the active round!</span>
+                    <div id="adminControlsFooter" class="hidden flex items-center gap-2">
+                        <button onclick="toggleNoRoundState()" class="bg-zinc-700 hover:bg-zinc-600 active:scale-95 text-white text-xs px-3.5 py-2 rounded-xl font-bold transition-all duration-300 flex items-center gap-1.5">
+                            <i class="fa-solid fa-image"></i> Toggle Custom Graphic (No Round)
+                        </button>
+                        <button onclick="openCustomMatchModal()" class="bg-[#5865F2] hover:bg-[#4752C4] active:scale-95 text-white text-xs px-3.5 py-2 rounded-xl font-bold transition-all duration-300 flex items-center gap-1.5 shadow-md">
+                            <i class="fa-solid fa-arrows-split-up-and-left"></i> إدارة المواجهة (المنظم فقط)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics -->
+            <div class="discord-card p-5 rounded-2xl shadow-xl space-y-3">
+                <h4 class="text-xs font-black text-zinc-300 uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-chart-line text-green-400"></i> Election Live Pulse & Analytics
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
+                    <div class="bg-[#1e1f22] p-3 rounded-xl border border-zinc-700">
+                        <div class="text-[10px] text-zinc-400">Total Server Votes</div>
+                        <div id="statTotalVotes" class="text-lg font-black text-white font-['Poppins']">0</div>
+                    </div>
+                    <div class="bg-[#1e1f22] p-3 rounded-xl border border-zinc-700">
+                        <div class="text-[10px] text-zinc-400">Current Leader</div>
+                        <div id="statLeader" class="text-xs font-black text-pink-400 truncate mt-1">None</div>
+                    </div>
+                    <div class="bg-[#1e1f22] p-3 rounded-xl border border-zinc-700">
+                        <div class="text-[10px] text-zinc-400">Match Status</div>
+                        <div id="matchStatusText" class="text-xs font-black text-green-400 mt-1">ACTIVE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Members Sidebar -->
+        <div class="lg:col-span-4 discord-card p-5 rounded-2xl shadow-2xl space-y-4 flex flex-col h-fit">
+            <div class="flex justify-between items-center border-b border-zinc-700/70 pb-3">
+                <h3 class="font-black text-white text-sm flex items-center gap-2 font-['Poppins']">
+                    <i class="fa-brands fa-discord text-[#5865F2]"></i> Server Members (<span id="totalMembersCount">17</span>)
+                </h3>
+                <span class="text-[10px] bg-green-500/20 text-green-400 px-2.5 py-0.5 rounded-full font-bold">Online</span>
+            </div>
+
+            <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute right-3 top-2.5 text-zinc-400 text-xs"></i>
+                <input type="text" id="memberSearch" onkeyup="filterMembers()" placeholder="Search member or friend..." class="w-full bg-[#1e1f22] border border-zinc-700 rounded-xl pr-9 pl-3 py-2 text-xs text-white focus:outline-none focus:border-[#5865F2] transition-all">
+            </div>
+
+            <div id="membersListContainer" class="space-y-2 max-h-[480px] overflow-y-auto pr-1"></div>
+
+            <div class="pt-3 border-t border-zinc-700/70">
+                <button onclick="openLoginModal()" class="w-full bg-gradient-to-r from-pink-600 to-indigo-600 hover:opacity-95 active:scale-95 text-white text-xs font-bold py-3 rounded-xl transition-all duration-300 shadow-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-user-plus text-sm"></i> تسجيل حساب جديد / Join
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="discord-glass py-4 px-6 text-center text-xs text-zinc-400 border-t border-[#232428] mt-auto">
+        <p>Discord Ultimate Election 2026 © - <span class="text-pink-500 font-bold">Winner Takes All</span></p>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black/75 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="discord-card max-w-md w-full p-6 rounded-2xl shadow-2xl border border-zinc-700 space-y-4">
+            <div class="flex justify-between items-center border-b border-zinc-700/70 pb-3">
+                <h3 class="text-base font-black text-white flex items-center gap-2 font-['Poppins']">
+                    <i class="fa-brands fa-discord text-[#5865F2]"></i> تسجيل الدخول / Login
+                </h3>
+                <button onclick="closeLoginModal()" class="text-zinc-400 hover:text-white transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <p class="text-xs text-zinc-400 leading-relaxed">أدخل اسم حسابك في ديسكورد للتوثيق والمشاركة في التصويت:</p>
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-zinc-300 mb-1.5">اسم ديسكورد (Discord Username):</label>
+                    <input type="text" id="loginInputUsername" placeholder="اكتب اسمك هنا..." class="w-full bg-[#1e1f22] border border-zinc-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#5865F2] transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-zinc-300 mb-1.5">كلمة المرور (إذا كان حساب إداري):</label>
+                    <input type="password" id="loginInputPassword" placeholder="اكتب كلمة المرور..." class="w-full bg-[#1e1f22] border border-zinc-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-indigo-500 transition">
+                </div>
+            </div>
+            <div class="flex justify-end gap-3 pt-3">
+                <button onclick="closeLoginModal()" class="bg-zinc-700 hover:bg-zinc-600 text-white px-4 py-2 rounded-xl text-xs font-bold transition">إلغاء</button>
+                <button onclick="submitLogin()" class="bg-[#5865F2] hover:bg-[#4752C4] active:scale-95 text-white px-5 py-2 rounded-xl text-xs font-bold transition shadow-lg">دخول 🚀</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Match Modal -->
+    <div id="customMatchModal" class="fixed inset-0 bg-black/75 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="discord-card max-w-lg w-full p-6 rounded-2xl shadow-2xl border border-zinc-700 space-y-4">
+            <div class="flex justify-between items-center border-b border-zinc-700/70 pb-3">
+                <h3 class="text-base font-black text-white flex items-center gap-2 font-['Poppins']">
+                    <i class="fa-solid fa-people-arrows text-[#eb459e]"></i> إدارة المواجهة (للمنظم فقط)
+                </h3>
+                <button onclick="closeCustomMatchModal()" class="text-zinc-400 hover:text-white transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-zinc-300 mb-1.5">المتنافس الأول (يمين):</label>
+                    <select id="selectFighter1" class="w-full bg-[#1e1f22] border border-zinc-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#eb459e]"></select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-zinc-300 mb-1.5">المتنافس الثاني (يسار):</label>
+                    <select id="selectFighter2" class="w-full bg-[#1e1f22] border border-zinc-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#eb459e]"></select>
+                </div>
+            </div>
+            <div class="flex justify-end gap-3 pt-3 border-t border-zinc-700/70">
+                <button onclick="closeCustomMatchModal()" class="bg-zinc-700 hover:bg-zinc-600 text-white px-4 py-2 rounded-xl text-xs font-bold transition">إلغاء</button>
+                <button onclick="applyCustomMatch()" class="bg-[#eb459e] hover:bg-[#d4378c] active:scale-95 text-white px-5 py-2 rounded-xl text-xs font-bold transition shadow-lg">بدء الجولة الجديدة 🔥</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[60] hidden flex items-center justify-center p-4">
+        <div class="discord-card max-w-xl w-full p-6 rounded-2xl shadow-2xl border border-zinc-700 space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-zinc-700/70 pb-3">
+                <h3 class="text-base font-black text-white flex items-center gap-2 font-['Poppins']">
+                    <i class="fa-solid fa-shield-halved text-yellow-400"></i> لوحة تحكم المنظم
+                </h3>
+                <button type="button" onclick="toggleAdminPanel()" class="text-zinc-400 hover:text-white transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="space-y-4 text-xs">
+                <div class="bg-[#1e1f22] p-4 rounded-xl border border-zinc-700">
+                    <h4 class="font-bold text-white mb-2 flex items-center gap-1.5"><i class="fa-solid fa-clock text-indigo-400"></i> ضبط وقت انتهاء الراوند</h4>
+                    <div class="flex items-center gap-2">
+                        <input type="number" id="roundDurationInput" min="1" max="120" value="5" class="w-28 bg-[#2b2d31] border border-zinc-600 rounded-xl px-3 py-2 text-white font-bold text-center">
+                        <span class="text-zinc-300">دقائق</span>
+                        <button type="button" onclick="startRoundTimer()" class="bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white font-bold px-4 py-2 rounded-xl transition shadow-md">بدء مؤقت الراوند ⏳</button>
+                    </div>
+                </div>
+                <div class="bg-[#1e1f22] p-4 rounded-xl border border-zinc-700">
+                    <h4 class="font-bold text-white mb-2 flex items-center gap-1.5"><i class="fa-solid fa-trophy text-yellow-400"></i> إعلان الفائز وإرسال إشعار الديسكورد وبدء جولة جديدة</h4>
+                    <button type="button" onclick="declareWinnerAndSendDiscord()" class="bg-yellow-500 hover:bg-yellow-400 active:scale-95 text-black font-extrabold px-4 py-2.5 rounded-xl transition shadow-md flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> إعلان الفائز وبدء جولة جديدة 🏆
+                    </button>
+                </div>
+                <div class="bg-[#1e1f22] p-4 rounded-xl border border-zinc-700">
+                    <h4 class="font-bold text-white mb-2">تصفير الأصوات</h4>
+                    <button type="button" onclick="resetVotesAdmin()" class="bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/30 font-bold px-3.5 py-2 rounded-xl transition">تصفير أصوات الجولة الحالية إلى 0</button>
+                </div>
+                <div class="bg-[#1e1f22] p-4 rounded-xl border border-zinc-700">
+                    <h4 class="font-bold text-white mb-2">إضافة مشارك جديد</h4>
+                    <div class="grid grid-cols-2 gap-2 mb-2">
+                        <input type="text" id="newMemberName" placeholder="اسم المشارك" class="bg-[#2b2d31] border border-zinc-600 rounded-xl px-3 py-2 text-white">
+                        <input type="text" id="newMemberRole" placeholder="الرتبة (مثال: VIP)" class="bg-[#2b2d31] border border-zinc-600 rounded-xl px-3 py-2 text-white">
+                    </div>
+                    <button type="button" onclick="addNewMemberAdmin()" class="bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold px-4 py-2 rounded-xl transition shadow-md">إضافة للموقع</button>
+                </div>
+            </div>
+            <div class="flex justify-end pt-3 border-t border-zinc-700/70">
+                <button type="button" onclick="toggleAdminPanel()" class="bg-zinc-700 hover:bg-zinc-600 text-white px-4 py-2 rounded-xl text-xs font-bold transition">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 left-6 bg-[#2b2d31] border border-[#eb459e] text-white px-5 py-3.5 rounded-2xl shadow-2xl z-[70] transform translate-y-24 opacity-0 transition-all duration-300 flex items-center gap-3">
+        <div id="toastIcon" class="text-[#eb459e] text-xl"><i class="fa-solid fa-circle-check"></i></div>
+        <div>
+            <div id="toastTitle" class="text-xs font-bold font-['Poppins']">تم</div>
+            <div id="toastSub" class="text-[11px] font-black text-[#8B0000] mt-0.5">Vote Recorded Successfully</div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        let serverMembers = [
+            { name: "Anestr", role: "Owner ⚡ NULL", status: "online", avatarColor: "from-green-600 to-emerald-800", votes: 0 },
+            { name: "! ahmad_ab", role: "Co Owner 🍂 AB", status: "online", avatarColor: "from-red-600 to-rose-900", votes: 0 },
+            { name: "Z3TAR_De", role: "Admin / Owner", status: "online", avatarColor: "from-indigo-600 to-purple-800", votes: 0 },
+            { name: "U...", role: "VIP - Fast Client", status: "dnd", avatarColor: "from-zinc-600 to-zinc-800", votes: 0 },
+            { name: "♱ |sssbm", role: "VIP - WMBU", status: "idle", avatarColor: "from-blue-600 to-cyan-800", votes: 0 },
+            { name: "اني مطي (جاني تحدي والله)", role: "VIP", status: "dnd", avatarColor: "from-yellow-600 to-amber-800", votes: 0 },
+            { name: "_... 🔥 CART", role: "Member - كيكة شكليطة", status: "idle", avatarColor: "from-pink-600 to-rose-600", votes: 0 },
+            { name: "Mansoor77 the king", role: "Member - ⚔️ UAE Minecraft", status: "idle", avatarColor: "from-emerald-600 to-teal-800", votes: 0 },
+            { name: "Moaaz XD", role: "Member - ttttttttttttttttt", status: "dnd", avatarColor: "from-zinc-700 to-zinc-900", votes: 0 },
+            { name: "مهند المعضل", role: "Member - fk bg", status: "idle", avatarColor: "from-slate-600 to-gray-800", votes: 0 },
+            { name: "My_legenderyDie", role: "🔒 MOON", status: "offline", avatarColor: "from-gray-700 to-zinc-900", votes: 0 },
+            { name: "R E F X", role: "⚡ HT1", status: "offline", avatarColor: "from-orange-600 to-red-800", votes: 0 },
+            { name: "Z3TAR-TierTest-Bot", role: "APP / Bot", status: "online", avatarColor: "from-red-500 to-pink-700", votes: 0 },
+            { name: "K乇尺尺日 | 卂丫日ㄩ乃 404", role: "Member", status: "offline", avatarColor: "from-teal-600 to-green-900", votes: 0 },
+            { name: "عبدالله", role: "Member", status: "offline", avatarColor: "from-blue-700 to-indigo-900", votes: 0 },
+            { name: "مستر همستر", role: "Member", status: "offline", avatarColor: "from-amber-700 to-yellow-900", votes: 0 },
+            { name: "SHO3LA [🔥]", role: "Member", status: "offline", avatarColor: "from-red-700 to-orange-900", votes: 0 }
+        ];
+
+        let currentRound = 1;
+        let currentMatch = { fighter1Index: 2, fighter2Index: 1, noRoundActive: false };
+        let loggedInUser = null;
+        let isAdmin = false;
+        let roundTimerInterval = null;
+        let roundEndTime = null;
+        let roundClosed = false;
+
+        document.addEventListener('mousemove', (e) => {
+            const glow = document.getElementById('cursorGlow');
+            if (glow) {
+                glow.style.left = e.clientX + 'px';
+                glow.style.top = e.clientY + 'px';
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            const apple = document.createElement('div');
+            apple.className = 'enchanted-apple';
+            apple.style.left = (e.clientX - 16) + 'px';
+            apple.style.top = (e.clientY - 16) + 'px';
+            const angle = Math.random() * Math.PI * 2;
+            const distance = 50 + Math.random() * 80;
+            apple.style.setProperty('--dx', Math.cos(angle) * distance + 'px');
+            apple.style.setProperty('--dy', Math.sin(angle) * distance + 'px');
+            document.body.appendChild(apple);
+            setTimeout(() => apple.remove(), 800);
+        });
+
+        window.onload = function() {
+            renderMembersList();
+            updateMatchupUI();
+            updateStats();
+            openLoginModal();
+        };
+
+        function openLoginModal() { document.getElementById('loginModal').classList.remove('hidden'); }
+        function closeLoginModal() { document.getElementById('loginModal').classList.add('hidden'); }
+
+        function submitLogin() {
+            const username = document.getElementById('loginInputUsername').value.trim();
+            const password = document.getElementById('loginInputPassword').value.trim();
+            if (!username) { showToast("الرجاء إدخال اسم ديسكورد صحيح!", "error"); return; }
+
+            if (username.toLowerCase() === 'z3tar_de') {
+                if (password !== 'Z3TAR6767') { showToast("اسم المستخدم أو كلمة المرور غير صحيحة!", "error"); return; }
+                isAdmin = true;
+            } else { isAdmin = false; }
+
+            let existing = serverMembers.find(m => m.name.toLowerCase() === username.toLowerCase());
+            if (!existing) {
+                serverMembers.unshift({ name: username, role: "Member (جديد ✨)", status: "online", avatarColor: "from-indigo-600 to-pink-600", votes: 0 });
+            }
+
+            loggedInUser = username;
+            document.getElementById('loggedOutSection').classList.add('hidden');
+            document.getElementById('loggedInSection').classList.remove('hidden');
+            document.getElementById('currentUsernameDisplay').innerText = loggedInUser;
+            document.getElementById('userAvatarPlaceholder').innerText = loggedInUser.charAt(0).toUpperCase();
+
+            if (isAdmin) {
+                document.getElementById('adminTriggerBtn').classList.remove('hidden');
+                document.getElementById('adminControlsFooter').classList.remove('hidden');
+                showToast(`أهلاً بك يا زعتر الأصلي! تم تفعيل لوحة التحكم بنجاح 🔥`);
+            } else {
+                document.getElementById('adminTriggerBtn').classList.add('hidden');
+                document.getElementById('adminControlsFooter').classList.add('hidden');
+                showToast(`أهلاً بك يا ${username}! تم تسجيل الدخول بنجاح 🔥`);
+            }
+
+            closeLoginModal();
+            renderMembersList();
+            updateMatchupUI();
+            updateStats();
+        }
+
+        function logoutUser() {
+            loggedInUser = null;
+            isAdmin = false;
+            document.getElementById('loggedInSection').classList.add('hidden');
+            document.getElementById('loggedOutSection').classList.remove('hidden');
+            document.getElementById('adminTriggerBtn').classList.add('hidden');
+            document.getElementById('adminControlsFooter').classList.add('hidden');
+            document.getElementById('adminModal').classList.add('hidden');
+            showToast("تم تسجيل الخروج بنجاح.");
+            openLoginModal();
+        }
+
+        function renderMembersList() {
+            const container = document.getElementById('membersListContainer');
+            const searchVal = document.getElementById('memberSearch').value.toLowerCase();
+            document.getElementById('totalMembersCount').innerText = serverMembers.length;
+            let html = "";
+            serverMembers.forEach((m, idx) => {
+                if (m.name.toLowerCase().includes(searchVal) || m.role.toLowerCase().includes(searchVal)) {
+                    let statusColor = m.status === 'online' ? 'bg-green-500' : (m.status === 'dnd' ? 'bg-red-500' : 'bg-yellow-500');
+                    html += `
+                        <div class="bg-[#1e1f22] hover:bg-[#35373c] p-2.5 rounded-xl border border-zinc-800/80 flex items-center justify-between transition-all group">
+                            <div class="flex items-center gap-3 overflow-hidden">
+                                <div class="relative flex-shrink-0">
+                                    <div class="w-9 h-9 rounded-full bg-gradient-to-br ${m.avatarColor} font-bold text-white flex items-center justify-center text-xs shadow">${m.name.charAt(0).toUpperCase()}</div>
+                                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 ${statusColor} border-2 border-[#1e1f22] rounded-full"></span>
+                                </div>
+                                <div class="truncate">
+                                    <h5 class="text-xs font-bold text-white truncate">${m.name}</h5>
+                                    <p class="text-[10px] text-zinc-400 truncate">${m.role}</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 flex-shrink-0">
+                                <span class="text-xs font-bold text-pink-400 bg-pink-500/10 px-2 py-0.5 rounded-full">${m.votes} صوت</span>
+                                ${isAdmin ? `<button onclick="quickSelectMatch(${idx})" title="وضع في المواجهة" class="bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] px-2 py-1 rounded-lg transition shadow"><i class="fa-solid fa-swords"></i> VS</button>` : ''}
+                            </div>
+                        </div>`;
+                }
+            });
+            container.innerHTML = html;
+        }
+
+        function filterMembers() { renderMembersList(); }
+
+        function toggleNoRoundState() {
+            if (!isAdmin) return;
+            currentMatch.noRoundActive = !currentMatch.noRoundActive;
+            updateMatchupUI();
+            showToast(currentMatch.noRoundActive ? "تم تفعيل وضع الصورة المخصصة." : "تم العودة لساحة المواجهة 1v1.");
+        }
+
+        function updateMatchupUI() {
+            const arena = document.getElementById('arenaContent');
+            const cancelVoteBar = document.getElementById('cancelVoteBar');
+            let roundVoteKey = `voted_round_${currentRound}_${loggedInUser}`;
+            let userChoiceKey = `choice_round_${currentRound}_${loggedInUser}`;
+            let hasVoted = loggedInUser && localStorage.getItem(roundVoteKey) === 'true';
+
+            if (hasVoted) cancelVoteBar.classList.remove('hidden');
+            else cancelVoteBar.classList.add('hidden');
+
+            if (currentMatch.noRoundActive) {
+                arena.innerHTML = `
+                    <div class="flex flex-col items-center justify-center text-center py-6 space-y-4">
+                        <div class="w-full max-w-md h-64 rounded-2xl overflow-hidden border-2 border-emerald-500/50 shadow-2xl bg-black relative">
+                            <img src="image_c5a2d6.png" alt="Custom Graphic" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+                                <div class="text-right">
+                                    <span class="bg-emerald-600 text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase shadow">الجولة ${currentRound} - بانتظار المواجهة</span>
+                                </div>
+                            </div>
+                        </div>
+                        ${isAdmin ? `<button onclick="toggleNoRoundState()" class="bg-indigo-600 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition shadow-lg">العودة لساحة 1v1</button>` : ''}
+                    </div>`;
+                return;
+            }
+
+            let f1 = serverMembers[currentMatch.fighter1Index];
+            let f2 = serverMembers[currentMatch.fighter2Index];
+            let total = f1.votes + f2.votes;
+            if (total === 0) total = 1;
+            let p1 = Math.round((f1.votes / total) * 100);
+            let p2 = 100 - p1;
+            let f1Leader = f1.votes > f2.votes && (f1.votes > 0 || f2.votes > 0);
+            let f2Leader = f2.votes > f1.votes && (f1.votes > 0 || f2.votes > 0);
+            let userChoice = localStorage.getItem(userChoiceKey);
+
+            arena.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-5 items-center">
+                    <div class="md:col-span-2 discord-glass p-5 rounded-2xl border ${f1Leader ? 'border-pink-500 shadow-lg shadow-pink-500/10' : 'border-zinc-700'} text-center relative">
+                        <div class="absolute -top-3 right-1/2 translate-x-1/2 bg-yellow-500 text-black px-3 py-0.5 rounded-full text-xs font-black shadow-lg ${f1Leader ? '' : 'hidden'}">👑 المتصدر</div>
+                        <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br ${f1.avatarColor} flex items-center justify-center text-2xl font-black text-white mb-3 shadow-md border-2 border-zinc-600">${f1.name.charAt(0).toUpperCase()}</div>
+                        <h4 class="text-base font-black text-white mb-1 truncate">${f1.name}</h4>
+                        <p class="text-[11px] text-zinc-400 mb-4 truncate">${f1.role}</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-xs text-zinc-400 mb-1.5 font-bold"><span>الأصوات:</span><span class="text-white">${f1.votes} (${p1}%)</span></div>
+                            <div class="w-full bg-[#1e1f22] h-3 rounded-full overflow-hidden p-0.5 border border-zinc-700">
+                                <div class="bg-gradient-to-r from-indigo-500 to-pink-500 h-full rounded-full transition-all duration-700" style="width: ${p1}%;"></div>
+                            </div>
+                        </div>
+                        <button onclick="voteFor(1)" class="w-full ${userChoice === '1' ? 'bg-green-600 ring-2 ring-green-400' : 'bg-gradient-to-r from-pink-600 to-rose-600'} active:scale-95 text-white font-bold py-2.5 rounded-xl transition shadow-lg text-xs flex items-center justify-center gap-2">
+                            <i class="fa-solid ${userChoice === '1' ? 'fa-check-double text-yellow-300' : 'fa-heart text-white'}"></i> ${userChoice === '1' ? 'صوتك الحالي 🗳️' : `صوّت لـ ${f1.name} 🔥`}
+                        </button>
+                    </div>
+
+                    <div class="md:col-span-1 flex flex-col items-center justify-center my-2 md:my-0">
+                        <div class="w-14 h-14 rounded-full animated-gradient flex items-center justify-center text-white font-black text-lg shadow-2xl float-anim">VS</div>
+                        <span class="text-[10px] text-zinc-400 mt-2 font-bold uppercase">الجولة ${currentRound}</span>
+                    </div>
+
+                    <div class="md:col-span-2 discord-glass p-5 rounded-2xl border ${f2Leader ? 'border-indigo-500 shadow-lg shadow-indigo-500/10' : 'border-zinc-700'} text-center relative">
+                        <div class="absolute -top-3 right-1/2 translate-x-1/2 bg-yellow-500 text-black px-3 py-0.5 rounded-full text-xs font-black shadow-lg ${f2Leader ? '' : 'hidden'}">👑 المتصدر</div>
+                        <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br ${f2.avatarColor} flex items-center justify-center text-2xl font-black text-white mb-3 shadow-md border-2 border-zinc-600">${f2.name.charAt(0).toUpperCase()}</div>
+                        <h4 class="text-base font-black text-white mb-1 truncate">${f2.name}</h4>
+                        <p class="text-[11px] text-zinc-400 mb-4 truncate">${f2.role}</p>
+                        <div class="mb-4">
+                            <div class="flex justify-between text-xs text-zinc-400 mb-1.5 font-bold"><span>الأصوات:</span><span class="text-white">${f2.votes} (${p2}%)</span></div>
+                            <div class="w-full bg-[#1e1f22] h-3 rounded-full overflow-hidden p-0.5 border border-zinc-700">
+                                <div class="bg-gradient-to-r from-orange-500 to-red-500 h-full rounded-full transition-all duration-700" style="width: ${p2}%;"></div>
+                            </div>
+                        </div>
+                        <button onclick="voteFor(2)" class="w-full ${userChoice === '2' ? 'bg-green-600 ring-2 ring-green-400' : 'bg-gradient-to-r from-indigo-600 to-purple-600'} active:scale-95 text-white font-bold py-2.5 rounded-xl transition shadow-lg text-xs flex items-center justify-center gap-2">
+                            <i class="fa-solid ${userChoice === '2' ? 'fa-check-double text-yellow-300' : 'fa-heart text-white'}"></i> ${userChoice === '2' ? 'صوتك الحالي 🗳️' : `صوّت لـ ${f2.name} 🔥`}
+                        </button>
+                    </div>
+                </div>`;
+        }
+
+        function cancelMyVote() {
+            if (!loggedInUser) return;
+            let roundVoteKey = `voted_round_${currentRound}_${loggedInUser}`;
+            let userChoiceKey = `choice_round_${currentRound}_${loggedInUser}`;
+            let previousChoice = localStorage.getItem(userChoiceKey);
+
+            if (!previousChoice) { showToast("لم تقم بالتصويت بعد!", "error"); return; }
+            if (previousChoice === '1') { if (serverMembers[currentMatch.fighter1Index].votes > 0) serverMembers[currentMatch.fighter1Index].votes -= 1; }
+            else { if (serverMembers[currentMatch.fighter2Index].votes > 0) serverMembers[currentMatch.fighter2Index].votes -= 1; }
+
+            localStorage.removeItem(roundVoteKey);
+            localStorage.removeItem(userChoiceKey);
+            updateMatchupUI();
+            renderMembersList();
+            updateStats();
+            showToast("تم إلغاء صوتك بنجاح! يمكنك تغييره الآن 🔄");
+        }
+
+        function startRoundTimer() {
+            if (!isAdmin) return;
+            const minutes = parseInt(document.getElementById('roundDurationInput').value) || 5;
+            roundEndTime = Date.now() + (minutes * 60 * 1000);
+            roundClosed = false;
+            if (roundTimerInterval) clearInterval(roundTimerInterval);
+
+            roundTimerInterval = setInterval(() => {
+                let remaining = roundEndTime - Date.now();
+                if (remaining <= 0) {
+                    clearInterval(roundTimerInterval);
+                    roundClosed = true;
+                    document.getElementById('roundTimerDisplay').innerText = "⏳ انتهى الوقت! التصويت مغلق";
+                    document.getElementById('matchStatusText').innerText = "CLOSED";
+                    document.getElementById('roundStatusBadge').innerText = "انتهى الوقت 🛑";
+                    showToast("انتهى وقت الراوند وأُغلق التصويت.", "error");
+                } else {
+                    let mins = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+                    let secs = Math.floor((remaining % (1000 * 60)) / 1000);
+                    document.getElementById('roundTimerDisplay').innerText = `⏳ متبقي: ${mins}د ${secs < 10 ? '0' : ''}${secs}ث`;
+                }
+            }, 1000);
+
+            toggleAdminPanel();
+            showToast(`بدأ مؤقت الراوند لمدة ${minutes} دقائق! ⏱️`);
+        }
+
+        function voteFor(fighterNum) {
+            if (!loggedInUser) { openLoginModal(); showToast("سجل دخولك أولاً للتصويت!", "error"); return; }
+            if (roundClosed) { showToast("انتهى وقت الراوند!", "error"); return; }
+
+            let roundVoteKey = `voted_round_${currentRound}_${loggedInUser}`;
+            let userChoiceKey = `choice_round_${currentRound}_${loggedInUser}`;
+            let hasVoted = localStorage.getItem(roundVoteKey) === 'true';
+            let previousChoice = localStorage.getItem(userChoiceKey);
+
+            if (hasVoted && previousChoice === fighterNum.toString()) { showToast("لقد صويت لهذا المرشح بالفعل!", "error"); return; }
+            if (hasVoted && previousChoice && previousChoice !== fighterNum.toString()) {
+                if (previousChoice === '1') serverMembers[currentMatch.fighter1Index].votes--;
+                else serverMembers[currentMatch.fighter2Index].votes--;
+            }
+
+            localStorage.setItem(roundVoteKey, 'true');
+            localStorage.setItem(userChoiceKey, fighterNum.toString());
+
+            if (fighterNum === 1) serverMembers[currentMatch.fighter1Index].votes++;
+            else serverMembers[currentMatch.fighter2Index].votes++;
+
+            updateMatchupUI();
+            renderMembersList();
+            updateStats();
+            showToast("تم تسجيل صوتك بنجاح! 🔥");
+        }
+
+        function updateStats() {
+            let total = serverMembers.reduce((sum, m) => sum + m.votes, 0);
+            document.getElementById('statTotalVotes').innerText = total;
+            let leader = serverMembers.reduce((prev, current) => (prev.votes > current.votes) ? prev : current);
+            document.getElementById('statLeader').innerText = total === 0 ? "لا أصوات بعد" : `${leader.name} (${leader.votes})`;
+        }
+
+        function openCustomMatchModal() {
+            if (!isAdmin) return;
+            const s1 = document.getElementById('selectFighter1'), s2 = document.getElementById('selectFighter2');
+            let opts = "";
+            serverMembers.forEach((m, idx) => opts += `<option value="${idx}">${m.name} (${m.role})</option>`);
+            s1.innerHTML = opts; s2.innerHTML = opts;
+            s1.value = currentMatch.fighter1Index; s2.value = currentMatch.fighter2Index;
+            document.getElementById('customMatchModal').classList.remove('hidden');
+        }
+        function closeCustomMatchModal() { document.getElementById('customMatchModal').classList.add('hidden'); }
+
+        function applyCustomMatch() {
+            if (!isAdmin) return;
+            const idx1 = parseInt(document.getElementById('selectFighter1').value);
+            const idx2 = parseInt(document.getElementById('selectFighter2').value);
+            if (idx1 === idx2) { showToast("لا يمكن أن يتنافس المتسابق مع نفسه!", "error"); return; }
+
+            currentMatch.fighter1Index = idx1; currentMatch.fighter2Index = idx2;
+            currentMatch.noRoundActive = false; currentRound++; roundClosed = false;
+            document.getElementById('matchStatusText').innerText = "ACTIVE";
+            document.getElementById('roundStatusBadge').innerText = "الجولة الحالية نشطة 🔥";
+            closeCustomMatchModal();
+            updateMatchupUI();
+            showToast(`بدأت الجولة ${currentRound}! ⚔️`);
+        }
+
+        function quickSelectMatch(idx) {
+            if (!isAdmin) return;
+            if (currentMatch.fighter1Index === idx) { showToast("المشارك موجود بالطرف الأول بالفعل.", "error"); return; }
+            currentMatch.fighter2Index = idx; currentMatch.noRoundActive = false; currentRound++; roundClosed = false;
+            updateMatchupUI();
+            showToast(`تم اختيار ${serverMembers[idx].name} للجولة ${currentRound}! 🔥`);
+        }
+
+        function toggleAdminPanel() {
+            const modal = document.getElementById('adminModal');
+            if (modal) {
+                modal.classList.toggle('hidden');
+            }
+        }
+
+        function declareWinnerAndSendDiscord() {
+            if (!isAdmin) return;
+            let f1 = serverMembers[currentMatch.fighter1Index];
+            let f2 = serverMembers[currentMatch.fighter2Index];
+            let winner = f1.votes >= f2.votes ? f1 : f2;
+
+            if (typeof sendDiscordNotification === 'function') {
+                sendDiscordNotification(
+                    `نتائج الجولة ${currentRound} - انتهت المواجهة الحاسمة! 🔥`,
+                    `انتهت معركة اليوم بين **${f1.name}** و **${f2.name}** بنجاح.`,
+                    winner.name
+                );
+            }
+
+            serverMembers.forEach(m => m.votes = 0);
+            currentRound++; roundClosed = false;
+            updateMatchupUI(); renderMembersList(); updateStats(); toggleAdminPanel();
+            showToast(`🏆 فاز بالجولة: ${winner.name}! وتم إرسال الإشعار للديسكورد.`);
+        }
+
+        function resetVotesAdmin() {
+            if (!isAdmin) return;
+            serverMembers.forEach(m => m.votes = 0);
+            roundClosed = false;
+            updateMatchupUI(); renderMembersList(); updateStats();
+            showToast("تم تصفير الأصوات بنجاح.");
+            toggleAdminPanel();
+        }
+
+        function addNewMemberAdmin() {
+            if (!isAdmin) return;
+            const name = document.getElementById('newMemberName').value.trim();
+            const role = document.getElementById('newMemberRole').value.trim() || "Member";
+            if (!name) { showToast("أدخل اسم المشارك.", "error"); return; }
+            serverMembers.push({ name: name, role: role, status: "online", avatarColor: "from-purple-600 to-indigo-800", votes: 0 });
+            document.getElementById('newMemberName').value = ""; document.getElementById('newMemberRole').value = "";
+            renderMembersList(); updateStats();
+            showToast(`تم إضافة ${name} بنجاح!`);
+        }
+
+        function copyDiscordAlert() {
+            let f1 = serverMembers[currentMatch.fighter1Index].name;
+            let f2 = serverMembers[currentMatch.fighter2Index].name;
+            let text = `@everyone @here\n🔥 **انتخابات سيرفر ديسكورد الكبرى - الجولة ${currentRound}!** 🔥\n\nمواجهة حاسمة بين: **${f1} 🆚 ${f2}**\n\nالفائز يحصل على **Full Access** ويتأهل مباشرة!\n🔗 رابط التصويت وانضمام السيرفر: https://discord.gg/x4xUCC2Dd4`;
+            navigator.clipboard.writeText(text);
+            showToast("تم نسخ رسالة الديسكورد مع الرابط! 📋");
+        }
+
+        function showToast(msg, type = "success") {
+            const toast = document.getElementById('toast');
+            const title = document.getElementById('toastTitle');
+            const sub = document.getElementById('toastSub');
+            const icon = document.getElementById('toastIcon');
+
+            title.innerText = msg;
+            if (type === "error") {
+                toast.classList.remove('border-[#eb459e]'); 
+                toast.classList.add('border-red-500');
+                icon.innerHTML = '<i class="fa-solid fa-circle-exclamation text-red-500"></i>';
+                sub.innerText = "Error / Restricted";
+            } else {
+                toast.classList.remove('border-red-500'); 
+                toast.classList.add('border-[#eb459e]');
+                icon.innerHTML = '<i class="fa-solid fa-circle-check text-[#eb459e]"></i>';
+                sub.innerText = "Success";
+            }
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => toast.classList.add('translate-y-24', 'opacity-0'), 3500);
+        }
+    </script>
+
+    <!-- ربط ملف الـ Webhook الخارجي -->
+    <script src="webhook.js"></script>
+</body>
+</html>
